@@ -1,4 +1,4 @@
-import { getApps, initializeApp } from 'firebase/app';
+import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup as _signInWithPopup } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { isBrowser } from '@builder.io/qwik/build';
@@ -10,11 +10,8 @@ const firebase_config = JSON.parse(import.meta.env.PUBLIC_FIREBASE_CONFIG);
 
 // initialize firebase
 
+const app = getApps().length ? initializeApp(firebase_config) : getApp();
 
-if (!getApps().length) {
-    initializeApp(firebase_config);
-}
-
-export const db = getFirestore();
-export const auth = isBrowser ? getAuth() : null;
+export const db = getFirestore(app);
+export const auth = isBrowser ? getAuth(app) : null;
 export const signInWithPopup = isBrowser ? _signInWithPopup : null;
