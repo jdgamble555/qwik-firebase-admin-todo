@@ -10,7 +10,7 @@ const firebase_config = JSON.parse(import.meta.env.PUBLIC_FIREBASE_CONFIG);
 
 // initialize firebase
 
-const app = getApps().length ? initializeApp(firebase_config) : getApp();
+const app = getApps().length ? getApp() : initializeApp(firebase_config);
 
 export const db = getFirestore(app);
 export const auth = isBrowser ? getAuth(app) : null;
