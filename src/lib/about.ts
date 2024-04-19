@@ -1,16 +1,12 @@
-import { initializeApp } from "firebase/app";
 import { doc, getDoc, getFirestore } from "firebase/firestore/lite";
+import { app } from "./firebase";
 
 type AboutDoc = {
     name: string;
     description: string;
 };
 
-const firebase_config = JSON.parse(import.meta.env.PUBLIC_FIREBASE_CONFIG);
-
-export const getAbout = async () =>{
-
-    const app = initializeApp(firebase_config);
+export const getAbout = async () => {
 
     const db = getFirestore(app);
 
