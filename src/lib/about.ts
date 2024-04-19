@@ -12,7 +12,7 @@ export const getAbout = async () =>{
 
     const app = initializeApp(firebase_config);
 
-    const db = getFirestore();
+    const db = getFirestore(app);
 
     const aboutSnap = await getDoc(doc(db, '/about/ZlNJrKd6LcATycPRmBPA'));
 
