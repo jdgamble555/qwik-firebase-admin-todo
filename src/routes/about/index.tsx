@@ -1,12 +1,19 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
-import { getAbout } from "~/lib/about";
+import type { AboutDoc } from "~/lib/about";
+import { getServerFirebase } from "~/lib/firebase-admin";
 
-export const useAboutPage = routeLoader$(async ({ cacheControl }) => {
+export const useAboutPage = routeLoader$(async ({ cacheControl, env }) => {
 
     cacheControl({ maxAge: 31536000, public: true });
 
-    return await getAbout();
+    const { admin } = getServerFirebase(env);
+
+    const snap = await admin.doc('/about/ZlNJrKd6LcATycPRmBPA').get();
+
+    return snap.data() as AboutDoc;
+
+    //return await getAbout();
 });
 
 export default component$(() => {

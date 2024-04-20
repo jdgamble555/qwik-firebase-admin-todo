@@ -1,7 +1,7 @@
 import { doc, getDoc, getFirestore } from "firebase/firestore/lite";
 import { app } from "./firebase";
 
-type AboutDoc = {
+export type AboutDoc = {
     name: string;
     description: string;
 };
