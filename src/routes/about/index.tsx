@@ -6,11 +6,7 @@ export const useAboutPage = routeLoader$(async ({ cacheControl }) => {
 
     cacheControl({ maxAge: 31536000, public: true });
 
-    const about = await getAbout();
-    if (!about?.value) {
-        throw 'error'
-    }
-    return about;
+    return await getAbout();
 });
 
 export default component$(() => {

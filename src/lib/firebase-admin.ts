@@ -1,6 +1,5 @@
 import { EnvGetter } from '@builder.io/qwik-city/middleware/request-handler';
 import { getApps, initializeApp, cert, getApp } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
 import { initializeFirestore } from 'firebase-admin/firestore';
 
 
@@ -14,7 +13,7 @@ export const getServerFirebase = (env: EnvGetter) => {
         credential: cert(firebase_config)
     });
     return {
-        auth: getAuth(app),
+        //auth: initializeAuth(app, { pref}),
         admin: initializeFirestore(app, { preferRest: true })
     }
 };
