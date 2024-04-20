@@ -1,5 +1,5 @@
 import { EnvGetter } from '@builder.io/qwik-city/middleware/request-handler';
-import { Firestore } from '@google-cloud/firestore';
+import { Firestore } from 'firebase-admin/firestore';
 
 
 // initialize admin firebase only once
