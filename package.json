@@ -31,6 +31,7 @@
   "devDependencies": {
     "@builder.io/qwik": "^1.5.2",
     "@builder.io/qwik-city": "^1.5.2",
+    "@google-cloud/firestore": "^7.6.0",
     "@types/eslint": "^8.56.6",
     "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^7.3.1",

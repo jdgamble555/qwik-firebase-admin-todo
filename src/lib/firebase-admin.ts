@@ -1,20 +1,24 @@
 import { EnvGetter } from '@builder.io/qwik-city/middleware/request-handler';
-import { getApps, initializeApp, cert, getApp } from 'firebase-admin/app';
-import { initializeFirestore } from 'firebase-admin/firestore';
+import { Firestore } from '@google-cloud/firestore';
 
 
 // initialize admin firebase only once
 
 export const getServerFirebase = (env: EnvGetter) => {
-    const firebase_config = JSON.parse(
+    const credentials = JSON.parse(
         env.get('PRIVATE_FIREBASE_ADMIN_CONFIG')!
-    )
-    const app = getApps().length ? getApp() : initializeApp({
-        credential: cert(firebase_config)
+    );
+
+    const admin = new Firestore({
+        preferRest: true,
+        credentials,
+        projectId: credentials.project_id
     });
+
+
     return {
         //auth: initializeAuth(app, { pref}),
-        admin: initializeFirestore(app, { preferRest: true })
+        admin
     }
 };
 
