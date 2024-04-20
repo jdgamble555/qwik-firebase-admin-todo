@@ -6,7 +6,9 @@ import { isBrowser } from '@builder.io/qwik/build';
 // import your .env variable
 // PUBLIC_FIREBASE_CONFIG={YOUR FIREBASE CONFIG}
 // make sure the Firebase keys are in Quotes ""
-const firebase_config = JSON.parse(import.meta.env.PUBLIC_FIREBASE_CONFIG);
+const firebase_config = JSON.parse(
+    import.meta.env.PUBLIC_FIREBASE_CONFIG
+);
 
 // initialize firebase
 export const app = getApps().length

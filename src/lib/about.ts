@@ -1,20 +1,25 @@
 import { doc, getDoc, getFirestore } from "firebase/firestore/lite";
 import { app } from "./firebase";
+import { routeLoader$, server$ } from "@builder.io/qwik-city";
+import { getServerFirebase } from "./firebase-admin";
+import { component$ } from "@builder.io/qwik";
+
 
 type AboutDoc = {
     name: string;
     description: string;
 };
 
-export const getAbout = async () => {
+export const getAbout = server$(async function () {
 
-    const db = getFirestore(app);
+    const { admin } = getServerFirebase(this.env);
 
-    const aboutSnap = await getDoc(doc(db, '/about/ZlNJrKd6LcATycPRmBPA'));
+    const aboutSnap = await admin.doc('/about/ZlNJrKd6LcATycPRmBPA').get();
 
-    if (!aboutSnap.exists()) {
-        throw 'Document does not exist!';
+    if (!aboutSnap.exists) {
+        return;
     }
 
-    return aboutSnap.data() as AboutDoc;
-};
+    return aboutSnap.data();
+
+});
